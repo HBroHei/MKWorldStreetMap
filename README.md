@@ -4,9 +4,13 @@ Discover unseen areas and shortcuts with this feature-rich Mario Kart World Web 
 
 Map is at https://hbrohei.github.io/MKWorldStreetMap/
 
+## The Launch!
+
+The Project was started in October 2025 to add some missing roads on the [original map by MrL314](https://github.com/MrL314/MKW-RoadMap). After almost a year, it has become a full web map application and is ready to be released to the public!
+
 ## Project Aim
 
-Besides simulating what "Google Maps" looks like in the Mario Kart World environment, this map also intends to make routing around the game world and shortcuts easier.
+Besides simulating what "Google Maps" may looks like in the Mario Kart World environment, this map also intends to make routing around the game world and shortcuts easier.
 
 ## Features
 * Full map of Mario Kart World, including road types and routes, structures, biomes, land, sea and rivers.
@@ -15,8 +19,8 @@ Besides simulating what "Google Maps" looks like in the Mario Kart World environ
 * Routing function for navigating through the world on solid roads.
 
 ## Planned Features
-* Contour Line / Heightmap - Hard to digitalise due to limited resources.
-* Information on all routes (intermissions) and rallies.
+* Contour Line / Heightmap - Hard to digitalise due to limited available resources.
+* Information on all routes (intermissions) and rallies. (The path it takes, item boxes, etc.)
 * Description to existing Place of Interests without a description. (Note that some places will intentionally lack image / description for in-game lore reason)
 
 ## Running the dev server
