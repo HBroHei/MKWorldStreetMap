@@ -6,7 +6,7 @@ Map is at https://hbrohei.github.io/MKWorldStreetMap/
 
 ## The Launch!
 
-The Project was started in October 2025 to add some missing roads on the [original map by MrL314](https://github.com/MrL314/MKW-RoadMap). After almost a year, it has become a full web map application and is ready to be released to the public!
+The Project was started in October 2025 to add some missing roads on the [original map by MrL314](https://github.com/MrL314/MKW-RoadMap) (Big thank you for serving as the base for this map!). After almost a year, it has become a full web map application and is ready to be released to the public!
 
 ## Project Aim
 
