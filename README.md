@@ -22,6 +22,7 @@ Besides simulating what "Google Maps" may looks like in the Mario Kart World env
 * Contour Line / Heightmap - Hard to digitalise due to limited available resources.
 * Information on all routes (intermissions) and rallies. (The path it takes, item boxes, etc.)
 * Description to existing Place of Interests without a description. (Note that some places will intentionally lack image / description for in-game lore reason)
+* Street View (and eventually web-based GeoGuessr-like game - but this is in low priority) (Will be limited for online version for copyright reason; but have customisable offline / self-hosted version)
 
 ## Running the dev server
 * The following NPM packages are required: (They can be installed by running `npm install` most of the time.)
