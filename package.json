@@ -1,0 +1,22 @@
+{
+  "name": "mkworldmap",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "homepage": "https://hbrohei.github.io/MKWorldStreetMap",
+  "scripts": {
+    "dev": "vite",
+    "devhost": "vite --host",
+    "build": "vite build",
+    "deploy": "gh-pages -d dist",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "vite": "^8.1.1"
+  },
+  "dependencies": {
+    "geojson-path-finder": "^2.1.0",
+    "ol": "^10.9.0"
+  }
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="A feature-rich web map of every streets, Yoshi's and other buildings in Mario Kart World. Plan your trip with the route finder, and discover some undiscovered locations with this map! Map will be continously updated with more locations, future game updates and DLCs.">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="./src/resources/ol.css">
+        <link rel="stylesheet" href="./src/resources/qgis2web.css">
+        <style>
+        html, body {
+            background-color: #000000;
+            overflow-x: hidden;
+        }
+        .ol-control > * {
+            background-color: #f8f8f8!important;
+            color: #444444!important;
+            border-radius: 0px;
+        }
+        .ol-attribution a, .gcd-gl-input::placeholder, .search-layer-input-search::placeholder {
+            color: #444444!important;
+        }
+        .search-layer-input-search {
+            background-color: #f8f8f8!important;
+        }
+        .ol-control > *:focus, .ol-control >*:hover {
+            background-color: rgba(248, 248, 248, 0.7)!important;
+        } 
+        .ol-control {
+            background-color: rgba(255,255,255,.4) !important;
+            padding: 2px !important;
+        } 
+        </style>
+
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <script>
+            if(typeof globla === 'undefined') window.global = window;
+        </script>
+        <title>MKWorld Interactive Street Map</title>
+    </head>
+    <body>
+        <div id="div-loading">
+            Loading map...
+        </div>
+        <div id="div-map-content">
+            <div id="map">
+                <div id="popup" class="ol-popup">
+                    <div id="popup-content"></div>
+                </div>
+            </div>
+            <div id="div-topbar">
+                <div id="div-search">
+                    <input id="input-search" placeholder="Search Building...">
+                    <button id="btn-search">Search</button>
+                </div>
+                <div id="div-map-action-d">
+                    <button id="btn-routes-d" class="map-action-btn" style="background-image: url('images/route.png');"><span>Route</span></button>
+                    <button id="btn-setting-d" class="map-action-btn" style="display:none;"><span>Setting</span></button>
+                    <button id="btn-about-d" class="map-action-btn" style="background-image: url('images/about.png');"><span>About</span></button>
+                </div>
+            </div>
+            <div id="div-info" class="dialog">
+                <div id="div-info-title-m" class="infos-m">
+                    <img id="img-info-m" src="images/poi/unknown.png">
+                    <h3 id="span-info-title-m">Hello World Lorem ipsum doir sit amet</h3>
+                </div>
+                <div id="div-info-title" class="infos-d">
+                    <div id="div-info-title-inner" class="title-img-inner">
+                        <img id="img-info" src="images/poi/unknown.png">
+                        <h3 id="span-info-title">Testing</h3>
+                    </div>
+                    <div class="info-content">
+                        <h3>About</h3>
+                        <p id="p-info"></p>
+                        <div>
+                            <button id="btn-routehere" class="map-action-btn" style="background-image: url('images/routehere.png');"><span>Route to here</span></button>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="div-route-finder" class="hidden dialog">
+                <b>Start Location:</b> <span id="span-start-loc">Not Set</span>
+                <button id="btn-start-loc" class="btn-loc">Set...</button>
+                <br>
+                <b>End Location:</b> <span id="span-end-loc">Not Set</span>
+                <button id="btn-end-loc" class="btn-loc">Set...</button>
+                <br>
+                <div id="div-route-search">
+                    <b>Click on the map to set the location, or search for a location below:</b><br>
+                    <input id="input-route-search" placeholder="Search...">
+                    <button id="btn-route-search" class="btn-loc">Search</button>
+                </div><br>
+                <div id="div-route-finder-btns">
+                    <button id="btn-find-route" class="btn-main">Find Route</button>
+                    <button id="btn-routes-cancel" class="btn-main">Cancel</button>
+                </div>
+                <small>Routing algorithm powered by <a href="https://github.com/perliedman/geojson-path-finder">GeoJSON Path Finder</a></small>
+            </div>
+            <div id="div-map-action">
+                <button id="btn-routes" class="map-action-btn" style="background-image: url('images/route.png');"><span>Route</span></button>
+                <button id="btn-setting" class="map-action-btn" style="display:none;"><span>Setting</span></button>
+                <button id="btn-about" class="map-action-btn" style="background-image: url('images/about.png');"><span>About</span></button>
+            </div>
+            <div id="div-detail-container" class="hidden dialog-container">
+                <div id="div-detail" class="hidden dialog dialog-main">
+                    <img id="img-detail-m" src="images/poi/unknown.png">
+                    <div id="div-detail-inner">
+                        <h3 id="span-detail-title-m">Testing</h3>
+                        <p id="p-info-m"></p>
+                        <button id="btn-detail-close" class="btn-main">Close</button>
+                    </div>
+                </div>
+            </div>
+            <div id="div-about-container" class="hidden dialog-container">
+                <div id="div-about" class="hidden dialog dialog-main">
+                    <div>
+                        <h1>Mario Kart World Interactive Street Map</h1>
+                        <p>
+                            Discover unseen areas and shortcuts with this feature-rich Mario Kart World Web Map, 
+                            with 99% of roads recorded, multiple Point of Interests filled with details, 
+                            and a fully-functional routing function!
+                        </p>
+                        <h2>Project Source</h2>
+                        <p>To be added...</p>
+                        <h2>Materials / Libraries Used</h2>
+                        <h3>Map Vectorisation</h3>
+                        <ul>
+                            <li>
+                                <h4><a href="https://qgis.org/">QGIS</a></h4>
+                                <p>The primary GIS software used.</p>
+                            </li>
+                            <li>
+                                <h4><a href="https://github.com/qgis2web/qgis2web">qgis2web</a></h4>
+                                <p>The tool used to convert into web maps.</p>
+                            </li>
+                            <li>
+                                <h4><a href="https://github.com/MrL314/MKW-RoadMap">MKW-RoadMap</a></h4>
+                                <p>The base map used for vectorising most of the roads and routes.</p>
+                            </li>
+                            <li>
+                                <h4><a href="https://www.youtube.com/watch?v=3pE23YTYEZM">Mario Kart World – Nintendo Direct (Video Screenshot)</a></h4>
+                                <p>The base satelite map used for vectorising missing roads and other geographic features (Rivers, Islands, etc).</p>
+                            </li>
+                            <li>
+                                <h4>Mario Kart World (Nintendo Switch 2 Game)</h4>
+                                <p>The game that this map is based on, with images and location details directly from the game. Support the game by buying it!</p>
+                            </li>
+                            <li>
+                                <h4><a href="https://mariowiki.com/">Super Mario Wiki</a></h4>
+                                <p>Information source for some details of the map.</p>
+                            </li>
+                        </ul>
+                        <h3>Web App</h3>
+                        <ul>
+                            <li>
+                                <h4><a href="https://openlayers.org/">OpenLayers</a></h4>
+                                <p>The main library used to render the map.</p>
+                            </li>
+                            <li>
+                                <h4><a href="https://github.com/perliedman/geojson-path-finder">GeoJSON Path Finder</a></h4>
+                                <p>The library used for the routing function of the map.</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <button id="btn-about-close" class="btn-main">Close</button>
+                </div>
+            </div>
+            <ul id="ul-search-res" class="hidden dialog">
+                
+            </ul>
+        <script type="module" src="./src/resources/functions.js"></script>
+        <script type="module" src="./src/layers/layers.js"></script>
+        <script type="module" src="./src/resources/qgis2web.js"></script>
+        <script type="module" src="./src/route.js"></script>
+    </body>
+</html>
