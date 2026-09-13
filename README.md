@@ -2,6 +2,8 @@
 
 Discover unseen areas and shortcuts with this feature-rich Mario Kart World Web Map, with 99% of roads recorded, multiple Point of Interests filled with details, and a fully-functional routing function!
 
+Map is at https://hbrohei.github.io/MKWorldStreetMap/
+
 ## Project Aim
 
 Besides simulating what "Google Maps" looks like in the Mario Kart World environment, this map also intends to make routing around the game world and shortcuts easier.
