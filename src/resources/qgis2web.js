@@ -138,9 +138,9 @@ function setInfoSpan(id, txt) {
     infoTitleSpanM.textContent = txt;
     detailTitleSpanM.textContent = txt;
 
-    infoImg.src = "/images/poi/" + (placeInfo.img ?? "unknown.png");
-    infoImgM.src = "/images/poi/" + (placeInfo.img ?? "unknown.png");
-    detailImgM.src = "/images/poi/" + (placeInfo.img ?? "unknown.png");
+    infoImg.src = "./images/poi/" + (placeInfo.img ?? "unknown.png");
+    infoImgM.src = "./images/poi/" + (placeInfo.img ?? "unknown.png");
+    detailImgM.src = "./images/poi/" + (placeInfo.img ?? "unknown.png");
     
     infoDesc.innerHTML = placeInfo.info ?? txt;
     detailDesc.innerHTML = placeInfo.info ?? txt;
@@ -471,10 +471,10 @@ export function addToResList(foundFeat, onItemClick){
     let resBtn = document.createElement("button");
     let itemImg = document.createElement("img");
     if(featData){
-        itemImg.src = "/images/poi/" + (featData.img ?? "unknown.png");
+        itemImg.src = "./images/poi/" + (featData.img ?? "unknown.png");
     }
     else{
-        itemImg.src = "/images/poi/unknown.png";
+        itemImg.src = "./images/poi/unknown.png";
     }
     resBtn.appendChild(itemImg);
     // Dummy bg DIV
